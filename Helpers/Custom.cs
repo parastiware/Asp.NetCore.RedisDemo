@@ -13,6 +13,7 @@ namespace RedisTest.Helpers
         {
             init();
         }
+        
          void init()
         {
             _redis= ConnectionMultiplexer.Connect("localhost");
@@ -22,14 +23,15 @@ namespace RedisTest.Helpers
         public static bool HasData<T>(T Object)
         {
             var key = Object.GetType();
+         
             if (_redisDatabse.KeyExists(SessionKey+key))
             {
+             
                 return true;
             }
-            else
-            {
-                return false;
-            }
+            
+            return false;
+            
 
         }
 
@@ -54,6 +56,7 @@ namespace RedisTest.Helpers
                 var key = SessionKey + data.GetType();
                 var value = JsonConvert.SerializeObject(data);
                 _redisDatabse.StringSet(key, value, timeOut);
+               
                 return true;
             }
             catch(Exception)
@@ -70,9 +73,11 @@ namespace RedisTest.Helpers
             
                 try
                 {
-                    var key = SessionKey + Object.GetType(); 
-                    var res = _redisDatabse.StringGet(key);
-                    if (res.IsNull)
+                    var key = SessionKey + Object.GetType();
+                
+                var res = _redisDatabse.StringGet(key);
+              
+                if (res.IsNull)
                         return default(T);
                     else
                         return JsonConvert.DeserializeObject<T>(res);
