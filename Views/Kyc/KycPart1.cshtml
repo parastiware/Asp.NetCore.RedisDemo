@@ -1,0 +1,24 @@
+﻿@model KycFormPart1
+@{
+	ViewData["Title"] = "Kyc-Form_Part-1";
+}
+
+<div class="text-center">
+	<h1 class="display-4">Kyc Part 1</h1>
+	</div>
+	<form asp-action="KycPart1" asp-controller="kyc">
+		<div class="form-group">
+			<label asp-for="FirstName"></label>
+			<input asp-for="FirstName" class="form-control" />
+		</div>
+		<div class="form-group">
+			<label asp-for="MiddleName"></label>
+			<input asp-for="MiddleName" class="form-control" />
+		</div>
+		<div class="form-group">
+			<label asp-for="LastName"></label>
+			<input asp-for="LastName" class="form-control" />
+		</div>
+		<button type="submit" class="btn btn-primary">Next</button>
+	</form>
+
